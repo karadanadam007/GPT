@@ -22,6 +22,9 @@ public class ChatGPTRequest : MonoBehaviour
     private IEnumerator ChatRequest()
     {
         Debug.Log("prompt " + prompt);
+
+      
+        
         var requestData = "{\"prompt\": \"" + prompt + "\", \"max_tokens\": 550, \"temperature\": 0.5}";
         var requestDataBytes = Encoding.UTF8.GetBytes(requestData);
 

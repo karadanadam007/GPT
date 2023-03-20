@@ -1,14 +1,17 @@
+using ChatGPTWrapper;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public string prompt;
+    
     private Button _sendButton;
-    private ChatGPTRequest _chatGptRequest;
+    private ChatGPTConversation _chatGptRequest;
 
     private void Start()
     {
-        _chatGptRequest = FindObjectOfType<ChatGPTRequest>();
+        _chatGptRequest = FindObjectOfType<ChatGPTConversation>();
 
 
         _sendButton = FindObjectOfType<Button>();
@@ -17,6 +20,6 @@ public class GameManager : MonoBehaviour
 
     private void OnSendButtonClick()
     {
-        _chatGptRequest.StartChatRequest();
+        _chatGptRequest.SendToChatGPT(prompt);
     }
 }
