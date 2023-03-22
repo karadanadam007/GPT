@@ -92,6 +92,7 @@ namespace ChatGPTWrapper {
                 case UnityWebRequest.Result.Success:
                     var responseJson = JsonUtility.FromJson<T>(webRequest.downloadHandler.text);
                     callback(responseJson);
+                    Debug.Log("Received: " + webRequest.downloadHandler.text);
                     break;
             }
             #else

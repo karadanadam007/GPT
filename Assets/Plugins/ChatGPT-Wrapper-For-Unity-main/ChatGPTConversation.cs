@@ -1,11 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 
 namespace ChatGPTWrapper
 {
     public class ChatGPTConversation : MonoBehaviour
     {
         [SerializeField] private string _apiKey = null;
+        [SerializeField] private string prompt = "Turkiyenin baskenti neresidir?";
 
         public enum Model
         {
@@ -42,7 +45,7 @@ namespace ChatGPTWrapper
         {
             // TextAsset textAsset = Resources.Load<TextAsset>("APIKEY");
             // _apiKey = textAsset.text;
-            _apiKey = "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";
+            _apiKey = "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";
             _reqHeaders = new List<(string, string)>
             {
                 ("Authorization", $"Bearer {_apiKey}"),
@@ -66,6 +69,8 @@ namespace ChatGPTWrapper
                     _selectedModel = "text-curie-001";
                     break;
             }
+            
+            
         }
 
         public void ResetChat(string initialPrompt)
@@ -81,6 +86,13 @@ namespace ChatGPTWrapper
             }
         }
 
+        [Button]
+        public void Send()
+        {
+            SendToChatGPT(prompt);
+        }
+
+        [Button]
         public void SendToChatGPT(string message)
         {
             _lastUserMsg = message;

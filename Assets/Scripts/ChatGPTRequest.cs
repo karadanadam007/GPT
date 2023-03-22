@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Networking;
 using System.Collections;
@@ -19,25 +18,19 @@ public class ChatGPTRequest : MonoBehaviour
         StartCoroutine(ChatRequest());
     }
 
-    private IEnumerator ChatRequest()
+    IEnumerator ChatRequest()
     {
-        Debug.Log("prompt " + prompt);
+        string requestData = "{\"prompt\": \"" + prompt + "\", \"max_tokens\": 150, \"temperature\": 0.5\"}";
+        byte[] requestDataBytes = Encoding.UTF8.GetBytes(requestData);
 
-      
-        
-        var requestData = "{\"prompt\": \"" + prompt + "\", \"max_tokens\": 550, \"temperature\": 0.5}";
-        var requestDataBytes = Encoding.UTF8.GetBytes(requestData);
-
-        var request = UnityWebRequest.PostWwwForm(chatGPTUrl, "POST");
+        UnityWebRequest request = UnityWebRequest.PostWwwForm(chatGPTUrl, "POST");
         request.SetRequestHeader("Content-Type", "application/json");
         request.SetRequestHeader("Authorization", "Bearer " + apiKey);
         request.uploadHandler = new UploadHandlerRaw(requestDataBytes);
         request.downloadHandler = new DownloadHandlerBuffer();
         yield return request.SendWebRequest();
 
-
-        if (request.result == UnityWebRequest.Result.ConnectionError ||
-            request.result == UnityWebRequest.Result.ProtocolError)
+        if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
         {
             Debug.Log(request.error);
         }
@@ -49,9 +42,9 @@ public class ChatGPTRequest : MonoBehaviour
         }
     }
 
-    private void ParseResponse(string response)
+    void ParseResponse(string response)
     {
-        var json = JSON.Parse(response);
+        JSONNode json = JSON.Parse(response);
 
         if (json != null)
         {
@@ -62,15 +55,6 @@ public class ChatGPTRequest : MonoBehaviour
         else
         {
             Debug.Log("Error parsing response");
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            Debug.Log(prompt);
-            StartChatRequest();
         }
     }
 }
