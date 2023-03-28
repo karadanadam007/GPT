@@ -381,29 +381,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6323537adafcc4e49bcb36b646442330, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prompt: '
+  prompt: 'We are developing a linking game! This game is played on a board with
+    various objects located on it. The 0''s on the board represent empty spaces.
+    To make the game more challenging, some sections of the board contain empty spaces,
+    and the difficulty level varies depending on the section. The objects are identified
+    by ID numbers 1-5, and players must match them with their own object IDs in order
+    to pop them. The objective of the game varies from level to level, for example,
+    in the first level, you might need to pop 10 of the number 1 objects, or 5 of
+    the number 2 objects and 6 of the number 3 objects, and so on.
 
 
-    senden benim icin bir maze tasarlamani istiyorum. boyutu 10x10
+    The difficulty
+    level of the game is calculated using the following formula:
 
 
-    1ler
-    duvari 0lar ise boslugu temsil ediyor olsun.
+    Difficulty
+    level =  ((board width * board height) * (number of objects that need to be collected)
+    - (empty spaces * 100))
 
 
-    0x0 maze in giris kapisi,
-    10x10 ise maze in cikis kapisi
+    The empty spaces can uses just one row. You dont
+    need to use empty spaces for evert time. it is not mandatory.
 
 
-    maze e giren kesinlikle cikabilmeli. onunde
-    cikisi engelleyen bir yapi olmamamli.
+    And the board
+    should look aesthetically pleasing and attractive. instead of complexity, there
+    should be nice patterns.
 
 
-    sadece maze bilgisini dondurursen
-    sevinirim.
+    The board size must be: 5x8
 
 
-    lutfen baska bir aciklama yapma. tesekkurler.'
+    object ids cannot
+    stand alone. At least one of its neighbors must same for linking.
+
+
+    Can you
+    design a level around 1850 points for me with this formula? and please give me
+    the board. Can you please give me a brief and concise answer without any unnecessary
+    details or explanations?
+
+
+    Please give me a brief and to-the-point answer
+    without any additional details and explanation.
+
+    Dont give me any comment
+    please.
+
+
+    Dont tell me here''s a level ..... and Board: and Sure,..., Here
+    is the...... and any other notes.
+
+
+
+    Because I will use this information
+    at our level editor. I just need raw data.
+
+
+    Dont write formula again and
+    score explanations.
+
+
+
+    thanks
+
+'
   _resultText: {fileID: 973951747}
 --- !u!4 &904148448
 Transform:
